@@ -1,29 +1,25 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 
-public class Main {
-
+public class Part1 {
+    
     public static void main(String args[]){
-
         ArrayList<String> linesValues = new ArrayList<>();
-        File file  = new File("test2.txt");
+        File file  = new File("test.txt");
 
         try (Scanner sc = new Scanner(file);) {
             while (sc.hasNextLine()) {
-                String replacedLine = replaceAllCardinalNumbers(sc.nextLine());
-                System.out.println(replacedLine);
-                char[] line = replacedLine.toCharArray();
-                System.out.println(line);
+                String line = sc.nextLine();
+                char[] arr = line.toCharArray();
 
                 String currentValue = "";
-                for (int i = 0; i < line.length; i++) {
-                    if (Character.isDigit(line[i])) {
-                        currentValue += line[i];
+                for (int i = 0; i < arr.length; i++) {
+                    if (Character.isDigit(arr[i])) {
+                        currentValue += arr[i];
                     }
                 }
                 linesValues.add(currentValue);
@@ -35,8 +31,9 @@ public class Main {
             e.printStackTrace();
         }
     }
-
+    
     public static List<String> formatAllValues(List<String> values) {
+
         ArrayList<String> formattedValues = new ArrayList<>();
         for (String value : values) {  
             if (value.length() == 1) {
@@ -62,15 +59,5 @@ public class Main {
     }
 
     //day 1 - part 2
-    public static String replaceAllCardinalNumbers(String value) {
-        return value.replace("one", "1")
-            .replace("two", "2")
-            .replace("three", "3")
-            .replace("four", "4")
-            .replace("five", "5")
-            .replace("six", "6")
-            .replace("seven", "7")
-            .replace("eigth", "8")
-            .replace("nine", "9");
-    }
+    
 }
